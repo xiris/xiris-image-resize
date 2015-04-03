@@ -1,0 +1,30 @@
+{
+  "name": "xiris/ImageResize",
+  "description": "Image resize library using GD or Imagick",
+  "license": "MIT",
+  "keywords": [
+    "xiris",
+    "image",
+    "resize",
+    "gd",
+    "imagick",
+    "image-resize"
+  ],
+  "authors": [
+    {
+      "name": "Christopher Silva",
+      "email": "xiris@xiris.com.br"
+    }
+  ],
+  "require": {
+    "php": ">= 5.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xiris\\Resizr\\": "src/Xiris/Resizr"
+    }
+  }
+}
