@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Xiris\\Resizr\\": "src/Xiris/Resizr"
+      "Xiris\\ResizrImage\\": "src/Xiris/ResizrImage"
     }
   }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Xiris\Resizr\Exception;
+namespace Xiris\ResizrImage\Exception;
 
 /**
  * Exception interface for all exceptions
  * Interface ExceptionInterface
  *
- * @package Xiris\Resizr\Exception
+ * @package Xiris\ResizrImage\Exception
  */
 interface ExceptionInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Xiris\Resizr\Exception;
+namespace Xiris\ResizrImage\Exception;
 
 /**
  * Class Exception
- * @package Xiris\Resizr\Exception
+ * @package Xiris\ResizrImage\Exception
  */
 class Exception extends \Exception implements ExceptionInterface
 {

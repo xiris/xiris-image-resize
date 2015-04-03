@@ -1,13 +1,13 @@
 <?php
 
-namespace Xiris\Resizr;
+namespace Xiris\ResizrImage;
 
 /**
  * Interface InterfaceDriver
- * @package Xiris\Resizr
+ * @package Xiris\ResizrImage
  */
 interface InterfaceDriver
 {
     public function generateImage();
-    public function getDriver();
+    public function getName();
 }

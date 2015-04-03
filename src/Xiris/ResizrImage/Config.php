@@ -1,12 +1,12 @@
 <?php
 
-namespace Xiris\Resizr;
+namespace Xiris\ResizrImage;
 
-use Xiris\Resizr\Exception\InvalidArgumentException;
+use Xiris\ResizrImage\Exception\InvalidArgumentException;
 
 /**
  * Class Image
- * @package Xiris\Resizr
+ * @package Xiris\ResizrImage
  */
 class Config implements \ArrayAccess
 {

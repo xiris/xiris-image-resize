@@ -1,10 +1,10 @@
 <?php
 
-namespace Xiris\Resizr\Exception;
+namespace Xiris\ResizrImage\Exception;
 
 /**
  * Class InvalidArgumentException
- * @package Xiris\Resizr\Exception
+ * @package Xiris\ResizrImage\Exception
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
