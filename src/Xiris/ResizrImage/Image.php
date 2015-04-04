@@ -39,6 +39,8 @@ class Image implements InterfaceImage
     public function setImage($image)
     {
         $this->image = $image;
+        $this->generateImageInfo();
+
         return $this;
     }
 
@@ -73,14 +75,14 @@ class Image implements InterfaceImage
         return $this->extension;
     }
 
+    /**
+     * Generate some image informations like width, height, extension
+     */
     public function generateImageInfo()
     {
         $extension = substr($this->image, -3);
         $this->setExtension($extension);
 
-        //header("Content-Type: image/{$this->extension}");
-
         list($this->width, $this->height) = getimagesize($this->image);
-
     }
 }

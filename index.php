@@ -5,7 +5,6 @@ $config = ['driver' => 'gd'];
 
 $image = new \Xiris\ResizrImage\Image();
 $image->setImage('profile-photo.jpg');
-$image->generateImageInfo();
 
 $build = new \Xiris\ResizrImage\Build($config);
 $build->setImage($image);
