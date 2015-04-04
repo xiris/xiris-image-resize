@@ -4,6 +4,7 @@ namespace Xiris\ResizrImage;
 
 use \Xiris\ResizrImage\Exception\Exception;
 use \Xiris\ResizrImage\Exception\InvalidArgumentException;
+use \Xiris\ResizrImage\FactoryDriver as Driver;
 
 /**
  * Class Build
@@ -21,6 +22,9 @@ class Build
      */
     protected $driver;
 
+    /**
+     * @var \Xiris\ResizrImage\Image
+     */
     protected $image;
 
     /**
@@ -87,13 +91,6 @@ class Build
             throw new InvalidArgumentException('The key "driver" dont exist in config');
         }
 
-        $driver = ucfirst($this->getConfig()->offsetGet('driver'));
-        $class  = sprintf('Xiris\\ResizrImage\\Driver\\%s', $driver);
-
-        if (!class_exists($class)) {
-            throw new Exception("Class for driver '{$driver}' could not be instantiated.");
-        }
-
-        return $this->driver = new $class;
+        return $this->driver = Driver::build($this->getconfig()->offsetGet('driver'));
     }
 }
