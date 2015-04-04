@@ -3,9 +3,14 @@ require_once 'vendor/autoload.php';
 
 $config = ['driver' => 'gd'];
 
-$image = new \Xiris\ResizrImage\Image($config);
+$image = new \Xiris\ResizrImage\Image();
+$image->setImage('profile-photo.jpg');
+$image->generateImageInfo();
 
-var_dump($image);
-var_dump($image->getConfig());
-var_dump($image->getDriver());
-var_dump($image->getDriver()->getName());
+$build = new \Xiris\ResizrImage\Build($config);
+$build->setImage($image);
+var_dump($build);
+var_dump($build->getConfig());
+var_dump($build->getImage());
+var_dump($build->getDriver());
+var_dump($build->getDriver()->getName());

@@ -2,73 +2,85 @@
 
 namespace Xiris\ResizrImage;
 
-use \Xiris\ResizrImage\Exception\Exception;
-use \Xiris\ResizrImage\Exception\InvalidArgumentException;
+use \Xiris\ResizrImage\Exception\ImageException;
 
 /**
  * Class Image
  * @package Xiris\ResizrImage
  */
-class Image
+class Image implements InterfaceImage
 {
-    /**
-     * @var \Xiris\ResizrImage\Config
-     */
-    protected $config;
+    protected $height;
+    protected $width;
+    protected $path;
+    protected $extension;
+    protected $image;
 
     /**
-     * @var \Xiris\ResizrImage\InterfaceDriver
+     * @var array
      */
-    protected $driver;
+    protected $allowedExtensions = ['jpg', 'png', 'gif'];
 
     /**
-     * @param array $config
+     * @param string $path
      */
-    public function __construct(array $config = [])
+    public function __construct($image = '')
     {
-        $this->setConfig($config);
+        if (!empty($image)) {
+            $this->$image = $image;
+            $this->generateImageInfo();
+        }
     }
 
     /**
-     * @param array $config
+     * @param $filename
      * @return $this
      */
-    public function setConfig(array $config = [])
+    public function setImage($image)
     {
-        $this->config = new Config($config);
+        $this->image = $image;
         return $this;
     }
 
     /**
-     * @return \Xiris\ResizrImage\Config
-     * @throws  \Xiris\ResizrImage\Exception\Exception
+     * @return string
      */
-    public function getConfig()
+    public function getImage()
     {
-        if (!$this->config instanceof Config) {
-            throw new Exception('The config class wasnt instantiated.');
-        }
-
-        return $this->config;
+        return $this->image;
     }
 
     /**
-     * @return \Xiris\ResizrImage\InterfaceDriver
-     * @throws Exception
+     * @return $this
      */
-    public function getDriver()
+    protected function setExtension($extension)
     {
-        if (empty($this->getConfig()->offsetExists('driver'))) {
-            throw new InvalidArgumentException('The key "driver" dont exist in config');
+        $extension = strtolower(trim($extension));
+
+        if (!in_array($extension, $this->allowedExtensions)) {
+            throw new ImageException("Type {$extension} not supported.");
         }
 
-        $driver = ucfirst($this->getConfig()->offsetGet('driver'));
-        $class  = sprintf('Xiris\\ResizrImage\\Driver\\%s', $driver);
+        $this->extension = $extension;
+        return $this;
+    }
 
-        if (!class_exists($class)) {
-            throw new Exception("Class for driver '{$driver}' could not be instantiated.");
-        }
+    /**
+     * @return mixed
+     */
+    protected function getExtension()
+    {
+        return $this->extension;
+    }
 
-        return $this->driver = new $class;
+    public function generateImageInfo()
+    {
+        $extension = substr($this->image, -3);
+        $this->setExtension($extension);
+
+        //header("Content-Type: image/{$this->extension}");
+
+        list($this->width, $this->height) = getimagesize($this->image);
+
     }
 }

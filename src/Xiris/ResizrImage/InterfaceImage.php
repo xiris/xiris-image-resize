@@ -8,6 +8,14 @@ namespace Xiris\ResizrImage;
  */
 interface InterfaceImage
 {
-    public function generateImage();
-    public function getName();
+    /**
+     * @param $image
+     * @return mixed
+     */
+    public function setImage($image);
+
+    /**
+     * @return mixed
+     */
+    public function getImage();
 }
